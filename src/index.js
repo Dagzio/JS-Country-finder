@@ -9,11 +9,12 @@ const searchInput = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
 
-searchInput.addEventListener('input', debounce(onSearchCountry, 1500));
+searchInput.addEventListener('input', debounce(onSearchCountry, DEBOUNCE_DELAY));
 
 function onSearchCountry() {
     const name = searchInput.value.trim();
     if (name === '') {
+        clearCountryLists();
         return;
     }
     fetchCountries(name).then(countries => {
